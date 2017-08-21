@@ -3,7 +3,8 @@
 #include <benchmark/benchmark.h>
 
 struct Topic1 {
-    using Callback = void();
+    using Callback             = void();
+    static constexpr size_t Id = 0;
 };
 
 static void BM_SingleSubscriber(benchmark::State& state) {
@@ -28,9 +29,10 @@ static void BM_MultiSubscriber(benchmark::State& state) {
     auto s1 = p.subscribe<Topic1>();
     auto s2 = p.subscribe<Topic1>();
 
+    std::vector<std::unique_ptr<events::Subscriber<Topic1>>> s;
     for (size_t i = 0; i < state.range(0); ++i) {
-        auto s = p.subscribe<Topic1>();
-        s->registerCallback([] {});
+        s.push_back(p.subscribe<Topic1>());
+        s.back()->registerCallback([] {});
     }
 
     while (state.KeepRunning()) {

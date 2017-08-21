@@ -3,7 +3,8 @@
 #include <gtest/gtest.h>
 
 struct Topic1 {
-    using Callback = void(bool, double, const char*);
+    using Callback             = void(bool, double, const char*);
+    static constexpr size_t Id = 0;
 };
 
 size_t gCalled = 0;

@@ -10,6 +10,7 @@ PUBLIC
 
 add_executable(events-test
   tests/Publisher.cpp
+  tests/function_traits.cpp
 )
 target_link_libraries(events-test
   events
