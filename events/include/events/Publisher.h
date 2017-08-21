@@ -2,6 +2,8 @@
 
 #include <events/Subscriber.h>
 
+#include <cx_typeid.h>
+
 #include <unordered_map>
 #include <vector>
 
@@ -21,7 +23,7 @@ private:
     struct TopicHasher {
         template <typename Topic>
         size_t operator()(Topic&&) const {
-            return typeid(Topic).hash_code();
+            return cx::type_id<Topic>();
         }
     };
 

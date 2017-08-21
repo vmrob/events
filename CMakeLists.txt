@@ -4,6 +4,8 @@ enable_testing()
 
 project (event-bus)
 
+set(CONSTEXPR_INCLUDE ${CMAKE_SOURCE_DIR}/vendor/constexpr/src/include)
+
 add_subdirectory (events)
 add_subdirectory (examples)
 add_subdirectory (vendor/googletest)
