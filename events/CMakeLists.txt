@@ -1,5 +1,3 @@
-set (CMAKE_CXX_FLAGS "-std=c++14 ${CMAKE_CXX_FLAGS}")
-
 add_library (events
   src/Publisher.cpp
 )
@@ -19,3 +17,11 @@ target_link_libraries(events-test
 )
 
 add_test(NAME events-test COMMAND events-test)
+
+add_executable(events-benchmark
+  benchmarks/Publisher.cpp
+)
+target_link_libraries(events-benchmark
+  events
+  benchmark
+)
