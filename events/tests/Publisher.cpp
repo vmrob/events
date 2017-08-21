@@ -10,7 +10,8 @@ TEST(Publisher, basics) {
     events::Publisher p;
 
     auto subscriber = p.subscribe<Topic1>();
-    subscriber.registerCallback([](bool, double, const char*) {
+
+    subscriber->registerCallback([](bool, double, const char*) {
         std::cout << "called" << std::endl;
     });
 
